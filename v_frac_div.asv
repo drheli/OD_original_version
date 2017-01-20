@@ -1,0 +1,31 @@
+function [] = v_frac_div(q_plus,q_minus,w_frac_plus,w_frac_minus,  i,n_r)
+persistent cin_one_plus;
+persistent cin_one_minus;
+
+if i == n_r  % n > 0
+    cin_one_plus = 0;  
+    cin_one_minus = 0;
+end
+
+[temp_frac_plus,temp_frac_minus,cout_one_plus,cout_one_minus] = fourbitadder(q_plus, q_minus, w_frac_plus, w_frac_minus, cin_one_plus, cin_one_minus);
+    
+if i>=1  % n > 0
+    cin_one_plus = cout_one_plus;  
+    cin_one_minus = cout_one_minus;
+else
+    cin_one_plus = 0;
+    cin_one_minus = 0;
+end
+    
+if i == n_r  % shift_ena in OM
+    v_frac_plus(2:unrolling) = temp_frac_plus(2:unrolling);
+    v_frac_minus(2:unrolling) = temp_frac_minus(2:unrolling);
+    shift_to_int_plus
+    
+
+
+if bin2dec(num2str(v_frac_plus)) >= bin2dec(num2str(v_frac_minus))
+    compare = 0;
+else
+    compare = 1;
+end
