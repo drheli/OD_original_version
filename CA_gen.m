@@ -53,7 +53,7 @@ persistent CA_d0;
 % x, this step can be easily implemented with "Register", but in Matlab, it can be implemented as below  
 % x,first read, then write.      
             addr_r=pairing(rd_addr,ite_input_r);
-            CAq1 = CA_x1(addr_r,1:unrolling);
+            CAq1 = CA_q1(addr_r,1:unrolling);
             CAq0 = CA_q0(addr_r,1:unrolling);
             addr_w=pairing(wr_addr, ite_input_r);
             CA_q1(addr_w,u_r) = q1;    %x[j+1]=>x[j]; initial x1=0,x2=xin1;
